@@ -38,6 +38,9 @@
     'conditions': [
       ['OS=="mac"', {
         'conditions': [
+          ['target_arch=="arm64"', { 
+            'xcode_settings': { 'ARCHS': [ 'arm64' ] },
+          }],
           ['target_arch=="ia32"', { 'xcode_settings': { 'ARCHS': [ 'i386' ] } }],
           ['target_arch=="x64"', { 'xcode_settings': { 'ARCHS': [ 'x86_64' ] } }]
         ],
@@ -57,6 +60,7 @@
           # (I don't think the 64-bit ASM files are compatible with `ml`/`ml64`...)
           ['OS=="win"', { 'mpg123_cpu%': 'i386_fpu' },
           { 'conditions': [
+            ['target_arch=="arm64"', { 'mpg123_cpu%': 'arm_nofpu' }],
             ['target_arch=="arm"', { 'mpg123_cpu%': 'arm_nofpu' }],
             ['target_arch=="ia32"', { 'mpg123_cpu%': 'i386_fpu' }],
             ['target_arch=="x64"', { 'mpg123_cpu%': 'x86-64' }],
